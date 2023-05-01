@@ -37,23 +37,21 @@ def render_main_menu():
     # Obtaining button coords so we can place text in the centre
 
     help_btn = pygame.Rect((WIDTH // 2 - 125, HEIGHT // 2 + 100), (250, 50))
-    if check_clicked(help_btn, lambda: print("Start Game")):
+    if check_clicked(help_btn, lambda: print("Instructions")):
         help_btn_col = colours["hover"]
     else:
         help_btn_col = colours["normal"]
     pygame.draw.rect(win, help_btn_col, help_btn)
     draw_text("Instructions", "white", (help_btn.centerx, help_btn.centery))
-    check_clicked(help_btn, lambda: print("Instructions"))
 
     quit_btn = pygame.Rect((WIDTH // 2 - 125, HEIGHT // 2 + 200), (250, 50))
-    if check_clicked(quit_btn, lambda: print("Start Game")):
+    if check_clicked(quit_btn, lambda: print("Goodbye!")):
         quit_btn_col = colours["hover"]
     else:
         quit_btn_col = colours["normal"]
     pygame.draw.rect(win, quit_btn_col, quit_btn)
     draw_text("Quit", "white", (quit_btn.centerx, quit_btn.centery))
-    check_clicked(quit_btn, lambda: print("Goodbye!"))
-    # These eight lines get repeated a lot, something that could be improved
+    # These lines get repeated a lot, something that could be improved
 
 
 pygame.init()
