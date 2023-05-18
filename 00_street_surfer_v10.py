@@ -1,9 +1,10 @@
-"""Version 10: Add crash and start sound effects to game
+"""Version 10: Add a couple of sound effects to the program as a result
+of usability testing
 Jack Andrews
 18/5/23"""
 import pygame
 from pygame import mixer
-# Module used for sound effects
+# This module is for the sound effects
 import random
 WIDTH = 600
 HEIGHT = 700
@@ -72,17 +73,15 @@ class Car:
         for enemy in Game.car_queue:
             e_car = enemy.mask
             y_offset = IMG_HEIGHT // 2 + (18 if p_car != self.mask_f else 0)
-            # Added this extra part to improve front-on collision when player
-            # is turning
             x_offset = 28 if p_car != self.mask_f else 0
             # Needed because the y positions are measured differently for
-            # player and enemy cars and also because the different images have
-            # different heights
+            # player and enemy cars
             # Due to size differences in the masks, x_offset is also needed
             offset = (enemy.x - self.x + x_offset, enemy.y + y_offset -
                       self.CAR_Y)
             if p_car.overlap(e_car, offset):
                 if not Game.is_dead:
+                    # Makes it so that sound is only played once
                     Game.crash_sfx.play()
                 return True
 
@@ -309,6 +308,7 @@ class Game:
     start_sfx = mixer.Sound("./assets/sounds/start.wav")
     crash_sfx.set_volume(0.3)
     start_sfx.set_volume(0.3)
+    # Sound effects added after usability testing
 
     @staticmethod
     def start_game():
@@ -321,6 +321,7 @@ class Game:
         Game.car_queue._queue.clear()
         Game.score = 0
         Game.start_sfx.play()
+        # Now plays sound when you start
 
     @staticmethod
     def save_high_score(fpath, score, stop=False):
