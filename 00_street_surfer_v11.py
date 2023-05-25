@@ -362,7 +362,7 @@ class Game:
     resume_btn = Button(WIDTH // 2 - 125, HEIGHT // 2 - 50, 250, 50,
                         "Resume", lambda: setattr(Game, "is_paused", False))
     restart_btn = Button(WIDTH // 2 - 125, HEIGHT // 2 - 50, 250, 50,
-                         "Restart", start_game)
+                         "Restart", start_game, sfx=None)
     garage_btn = Button(WIDTH // 2 - 125, HEIGHT // 2 + 100, 250, 50,
                         'Garage', lambda: setattr(Game, "screen_id", 3))
     garage_menu_btn = Button(WIDTH // 2 - 125, HEIGHT - 100, 250, 50,
@@ -370,7 +370,7 @@ class Game:
                              lambda: setattr(Game, "screen_id", 0))
     # Need a different menu button as the other one is too high up
     red_btn = Button(30, HEIGHT // 2 + 30, 50, 50, '',
-                     lambda: Game.car.change_colour("red"), btn_col="red")
+        lambda: Game.car.change_colour("red"), btn_col="red", sfx=None)
     light_blue_btn = Button(100, HEIGHT // 2 + 30, 50, 50, '',
                             lambda: Game.car.change_colour("light blue"),
                             btn_col="light blue", sfx=None)
