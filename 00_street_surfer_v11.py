@@ -354,7 +354,7 @@ class Game:
         lambda: setattr(Game, "screen_id", Game.INSTRUCTIONS_ID))
     quit_btn = Button(WIDTH // 2 - 125, HEIGHT // 2 + 200, 250, 50, "Quit",
                       lambda: Game.save_high_score(
-                          "highscore.txt", Game.score, stop=True))
+                          "highscore.txt", Game.score, stop=True), sfx=None)
     menu_btn = Button(WIDTH // 2 - 125, HEIGHT // 2 + 100, 250, 50,
                       "Back To Menu",
                       lambda: setattr(Game, "screen_id", Game.MAIN_MENU_ID),
