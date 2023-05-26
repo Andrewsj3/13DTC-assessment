@@ -19,6 +19,7 @@ IMG_HEIGHT = 135
 (CHANGE_SFX := mixer.Sound("./assets/sounds/customize.wav")).set_volume(0.5)
 (BUTTON_SFX := mixer.Sound("./assets/sounds/button.wav")).set_volume(0.4)
 (LEAVE_SFX := mixer.Sound("./assets/sounds/leave.wav")).set_volume(0.4)
+(NEW_BEST_SFX := mixer.Sound("./assets/sounds/new_best.wav")).set_volume(0.4)
 # These needed to be constants because the buttons couldn't access these
 # from the Game class
 
@@ -90,7 +91,13 @@ class Car:
             if p_car.overlap(e_car, offset):
                 if not Game.is_dead:
                     # Makes it so that sound is only played once
-                    CRASH_SFX.play()
+                    if Game.is_new_best():
+                        NEW_BEST_SFX.play()
+                        NEW_BEST_SFX.fadeout(4000)
+                        # This sound is quite long, so we want to cut it off a
+                        # bit
+                    else:
+                        CRASH_SFX.play()
                 return True
 
     def change_img(self):
@@ -370,7 +377,8 @@ class Game:
                              lambda: setattr(Game, "screen_id", 0))
     # Need a different menu button as the other one is too high up
     red_btn = Button(30, HEIGHT // 2 + 30, 50, 50, '',
-        lambda: Game.car.change_colour("red"), btn_col="red", sfx=None)
+                     lambda: Game.car.change_colour("red"),
+                     btn_col="red", sfx=None)
     light_blue_btn = Button(100, HEIGHT // 2 + 30, 50, 50, '',
                             lambda: Game.car.change_colour("light blue"),
                             btn_col="light blue", sfx=None)
